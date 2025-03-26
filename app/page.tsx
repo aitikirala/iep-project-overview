@@ -1,53 +1,36 @@
+// Updated page.tsx to integrate DocumentPipeline into a dedicated section
 import Header from "components/Header";
-import Hero from "components/Hero";
-import Features from "components/Features";
 import Section from "components/Section";
 import Footer from "components/Footer";
 import Customers from "components/Customers";
-import Image from "next/image";
 import Accordion from "components/Accordion";
-import Reviews from "components/Reviews";
 import Download from "components/Download";
+import DocumentPipeline from "components/DocumentPipeline";
 
 export default function Page() {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-black">
       <Header />
       <main>
-        <Hero />
-        <Features />
+        <DocumentPipeline />
         <Section
-          leftHalf={
-            <>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
-                Effortlessly highlight the key features of your app
-              </h2>
-              <p className="text-xl font-light">
-                Our app makes it easy to showcase your key features. With customizable sections, you can highlight the
-                most important aspects of your product. More to come.
-              </p>
-            </>
-          }
-          rightHalf={
-            <Image src={"/products/phone.png"} alt="section-image" width={500} height={100} className="w-1/2 h-auto" />
-          }
-        />
-        <Customers />
-        <Section
-          leftHalf={<Accordion />}
+          leftHalf={<Accordion items={[
+            { title: "Phase 1: Template Setup", content: "Create labeled templates and train models on incoming documents." },
+            { title: "Phase 2: Developer-in-the-loop", content: "Validate outputs, refine logic, and ensure data quality." },
+            { title: "Phase 3: Business User Flow", content: "Train and deploy models via UI, without developer dependency." }
+          ]} />}
           rightHalf={
             <div className="flex flex-col justify-end">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
-                Highlight the key features
+              <h2 className="text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
+                Phased AI Integration
               </h2>
               <p className="text-xl font-light">
-                Talk about some of the key features of your app that you want to highlight. Use the beautiful accordion
-                to highlight the key features of your app.
+                Our pipeline evolves from setup to advanced AI with feedback loops, giving full control to both developers and business users.
               </p>
             </div>
           }
         />
-        <Reviews />
+        <Customers />
         <Download />
       </main>
       <Footer />
