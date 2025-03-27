@@ -1,53 +1,50 @@
-// New component: DocumentPipeline.tsx
-import React from "react";
-import { FaFileAlt, FaCog, FaRobot, FaCheckCircle, FaChartLine, FaUsers } from "react-icons/fa";
+'use client';
+
+import React, { useState } from "react";
+import { FaFileAlt, FaCog, FaRobot, FaCheckCircle, FaChartLine, FaUsers, FaChevronDown } from "react-icons/fa";
 
 const pipelineSteps = [
   {
     icon: FaFileAlt,
     title: "Form Intake + Scanner Integration",
-    description:
-      "Bring in forms from many channels.",
-      how: [
-        "Paper forms are scanned via OMR or high-speed scanners.",
-        "PDFs are captured via Email-to-PDF, Fax, or direct upload.",
-        "Raw files are uploaded to Google Cloud Storage (GCS).",
-      ],
-    tech: "Scanners, Email systems, Fax → GCS buckets"
+    description: "Bring in forms from different channels and upload to Google Storage",
+    details: "We use Google Cloud Functions to monitor uploads, Cloud Storage buckets for intake, and OCR-compatible scanners for integration."
   },
   {
     icon: FaRobot,
     title: "DocAI Processing",
-    description:
-      "AI models extract data from documents using DocAI processors, bounding boxes, and labeling tools.",
+    description: "AI models extract data from documents using DocAI processors, bounding boxes, and labeling tools.",
+    details: "Google Document AI with custom-trained parsers is used. Bounding box labeling is done with AutoML tools. JSON output is post-processed using Node.js."
   },
   {
     icon: FaCog,
     title: "Validation & Business Rules",
-    description:
-      "Automated validation, confidence thresholds, and business logic rules ensure correct formatting and structure.",
+    description: "Automated validation, confidence thresholds, and business logic rules ensure correct formatting and structure.",
+    details: "Rules are defined in a rule engine (e.g. JSONLogic or custom JS rules), and confidence thresholds are tuned with historical QA data."
   },
   {
     icon: FaUsers,
     title: "Human-in-the-loop Action Center",
-    description:
-      "Flagged data or exceptions are reviewed by human validators for quality control and training feedback.",
+    description: "Flagged data or exceptions are reviewed by human validators for quality control and training feedback.",
+    details: "Validators use a React-based review UI powered by Firebase Auth and Firestore for logging actions and feedback data."
   },
   {
     icon: FaChartLine,
     title: "Model Feedback & Retraining",
-    description:
-      "Real-time feedback, error reviews, and edge cases improve model accuracy and are used to retrain weak models.",
+    description: "Real-time feedback, error reviews, and edge cases improve model accuracy and are used to retrain weak models.",
+    details: "Feedback data is batched and used to retrain models using TensorFlow pipelines deployed on Vertex AI."
   },
   {
     icon: FaCheckCircle,
     title: "Structured Data Output",
-    description:
-      "Once validated, the data is output in a structured format for downstream workflows or storage.",
+    description: "Once validated, the data is output in a structured format for downstream workflows or storage.",
+    details: "Output is stored in BigQuery or forwarded to downstream APIs in JSON/CSV/XML format. Audit logs are saved for compliance."
   },
 ];
 
 const DocumentPipeline: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section className="py-24 bg-white dark:bg-black">
       <div className="container mx-auto px-4">
@@ -63,6 +60,23 @@ const DocumentPipeline: React.FC = () => {
               <step.icon size={40} className="text-green-500 mx-auto mb-4" />
               <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">{step.title}</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light">{step.description}</p>
+
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="mt-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors inline-flex items-center gap-2"
+              >
+                {openIndex === index ? "Hide Details" : "Learn More"}
+                <FaChevronDown
+                  className={`transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
+                  size={12}
+                />
+              </button>
+
+              {openIndex === index && (
+                <p className="mt-3 text-gray-500 dark:text-gray-400 text-sm font-light">
+                  {step.details}
+                </p>
+              )}
             </div>
           ))}
         </div>
