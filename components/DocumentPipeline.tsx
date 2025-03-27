@@ -7,7 +7,13 @@ const pipelineSteps = [
     icon: FaFileAlt,
     title: "Form Intake + Scanner Integration",
     description:
-      "Documents enter the system via scan, fax, or email. They are batched, renamed, and categorized before processing.",
+      "Bring in forms from many channels.",
+      how: [
+        "Paper forms are scanned via OMR or high-speed scanners.",
+        "PDFs are captured via Email-to-PDF, Fax, or direct upload.",
+        "Raw files are uploaded to Google Cloud Storage (GCS).",
+      ],
+    tech: "Scanners, Email systems, Fax → GCS buckets"
   },
   {
     icon: FaRobot,
