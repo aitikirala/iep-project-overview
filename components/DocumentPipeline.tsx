@@ -63,12 +63,12 @@ const DocumentPipeline: React.FC = () => {
 
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="mt-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors inline-flex items-center gap-2"
+                className="mt-4 p-2 border border-gray-300 dark:border-gray-600 rounded-full text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle details"
               >
-                {openIndex === index ? "Hide Details" : "Learn More"}
                 <FaChevronDown
                   className={`transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
-                  size={12}
+                  size={16}
                 />
               </button>
 
