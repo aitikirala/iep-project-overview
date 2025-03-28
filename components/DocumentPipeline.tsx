@@ -13,8 +13,8 @@ const pipelineSteps = [
   {
     icon: FaRobot,
     title: "DocAI Processing",
-    description: "AI models extract data from documents using DocAI processors, bounding boxes, and labeling tools.",
-    details: "Google Document AI with custom-trained parsers is used. Bounding box labeling is done with AutoML tools. JSON output is post-processed using Node.js."
+    description: "Once in GCS, documents are automatically renamed and categorized based on type (e.g., batch sheet, envelope, multipage form).",
+    details: "Tools we use: UiPath Renaming Bot applies naming standards. Envelope Reader Bot groups related forms together. Batch Categorization Bot classifies documents by structure. Tech used: UiPath, GCS, custom logic to detect cover sheets, barcodes, batch breaks"
   },
   {
     icon: FaCog,

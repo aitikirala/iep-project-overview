@@ -2,9 +2,7 @@
 import Header from "components/Header";
 import Section from "components/Section";
 import Footer from "components/Footer";
-import Customers from "components/Customers";
 import Accordion from "components/Accordion";
-import Download from "components/Download";
 import DocumentPipeline from "components/DocumentPipeline";
 
 export default function Page() {
@@ -30,8 +28,6 @@ export default function Page() {
             </div>
           }
         />
-        <Customers />
-        <Download />
       </main>
       <Footer />
     </div>
