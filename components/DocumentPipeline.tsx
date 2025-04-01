@@ -57,7 +57,7 @@ const DocumentPipeline: React.FC = () => {
               key={index}
               className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-200 text-center"
             >
-              <step.icon size={40} className="text-green-500 mx-auto mb-4" />
+              <step.icon size={40} className="text-[#895AFC] mx-auto mb-4" />
               <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">{step.title}</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light">{step.description}</p>
 
@@ -86,3 +86,4 @@ const DocumentPipeline: React.FC = () => {
 };
 
 export default DocumentPipeline;
+
